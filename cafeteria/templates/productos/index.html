@@ -1,0 +1,38 @@
+{# templates/product_cards.html #}
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h1 class="text-center mb-4">Lista de Productos</h1>
+    <a href="{% url 'producto_create' %}" class="btn  mb-4" style="background-color: #b58450; color: white;">Nuevo Producto</a>
+
+    <div class="row">
+        {% for producto in productos %}
+
+        <div class="col-md-4 mb-4">
+            <div class="product-card">
+                <span class="badge {% if producto.status %}bg-success{% else %}bg-danger{% endif %}">
+                    {% if producto.status %}Activo{% else %}Inactivo{% endif %}
+                </span>
+                <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}" style="height: 200px; object-fit: cover;">
+
+                
+                <h3>{{ producto.nombre }}</h3>
+                    <p class="card-text">Precio: ${{ producto.precio }}</p>
+                    
+                    
+                    <div class="d-flex justify-content-between">
+                        
+                        <a href="{% url 'producto_detail' producto.pk %}" class="btn  btn-sm" style="background-color: #d6a167; color: white;">Ver</a>
+                        <a href="{% url 'producto_update' producto.pk %}" class="btn btn-sm" style="background-color: #b58450; color: white;">Editar</a>
+                        
+                    </div>
+                
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
+

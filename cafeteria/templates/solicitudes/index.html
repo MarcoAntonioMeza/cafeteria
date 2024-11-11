@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2 class="text-center mb-4" style="color: #b58450;">POR ENTREGAR</h2>
+<div class="card-container d-flex flex-wrap justify-content-start">
+    {% for solicitud in solicitudes %}
+    <div class="product-card card" style="width: 18rem; margin: 10px; border: 1px solid #ddd; border-radius: 8px;">
+        <!-- Imagen del producto -->
+        <img src="{{ solicitud.producto.imagen.url }}" class="card-img-top" alt="{{ solicitud.producto.nombre }}"
+            style="height: 200px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+
+        <div class="card-body">
+            <!-- Nombre del producto -->
+            <h5 class="card-title" style="font-size: 1.25rem; color: #333;">{{ solicitud.producto.nombre }}</h5>
+
+            <!-- Cantidad y precio -->
+            <p class="card-text" style="color: #777;">Cantidad: {{ solicitud.cantidad }}</p>
+            <p class="price" style="font-weight: bold; color: #b58450;">Precio por unidad: ${{ solicitud.producto.precio }}</p>
+
+            <!-- Total -->
+            <p class="price" style="font-weight: bold; color: #b58450;">Total: ${{ solicitud.total }}</p>
+
+            <!-- Información del cliente -->
+            <p><strong>Cliente:</strong> {{ solicitud.nombre_cliente }}</p>
+            <p><strong>Mensaje para el vaso:</strong> {{ solicitud.mensaje }}</p>
+
+            <!-- Fecha y hora de la solicitud -->
+            <p style="color: #777;"><strong>Fecha y hora de la solicitud:</strong> {{ solicitud.created|date:"d M Y, h:i A" }}</p>
+
+            <!-- Estado de la solicitud -->
+            <p><strong>Estado:</strong> 
+                {% if solicitud.status == 0 %}
+                    <span style="color: green;">Entregado</span>
+                {% else %}
+                    <span style="color: red;">Pendiente</span>
+                    <!-- Botón de entregar -->
+            <form method="POST" action="{% url 'entregar_solicitud' solicitud.id %}">
+                {% csrf_token %}
+                <button type="submit" class="btn btn-success" style="width: 100%; background-color: #b58450; color: white;">
+                    Marcar como entregado
+                </button>
+            </form>
+                {% endif %}
+            </p>
+
+            
+        </div>
+    </div>
+{% endfor %}
+
+
+
+</div>
+
+{% endblock %}

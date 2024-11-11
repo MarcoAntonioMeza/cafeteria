@@ -1,0 +1,234 @@
+/* Reset básico */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Roboto', sans-serif;
+    background-color: #f4f4f9;
+    color: #333;
+    text-transform: uppercase;
+}
+
+/* Header */
+.header {
+    background-color: #d6a167;
+    padding: 20px;
+    text-align: center;
+}
+
+.logo {
+    font-size: 32px;
+    font-weight: bold;
+    color: #fff;
+}
+
+/* Sección de productos */
+.product-section {
+    padding: 40px 20px;
+    text-align: center;
+}
+
+.product-section h2 {
+    font-size: 28px;
+    margin-bottom: 20px;
+    color: #333;
+}
+
+.card-container {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    justify-content: center;
+}
+
+/* Card de producto */
+.product-card {
+    background-color: #fff;
+    width: 250px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    text-align: center;
+    transition: transform 0.2s;
+}
+
+.product-card:hover {
+    transform: scale(1.05);
+}
+
+.product-card img {
+    width: 100%;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+.product-card h3 {
+    font-size: 20px;
+    color: #d6a167;
+    margin: 15px 0 5px;
+}
+
+.product-card p {
+    font-size: 14px;
+    color: #666;
+    margin-bottom: 10px;
+}
+
+.product-card input[type="text"] {
+    width: 100%;
+    padding: 8px;
+    margin-bottom: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+}
+
+.product-card button {
+    background-color: #d6a167;
+    color: white;
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 14px;
+    font-weight: bold;
+    width: 100%;
+}
+
+.product-card button:hover {
+    background-color: #b58450;
+}
+
+/* Footer */
+.footer {
+    background-color: #333;
+    color: #f4f4f4;
+    text-align: center;
+    padding: 20px 0;
+    font-size: 14px;
+}
+
+
+
+/* Estilos para el formulario */
+.form-card {
+    background-color: #fff;
+    width: 100%;
+    max-width: auto ;
+    margin: 0 auto;
+    padding: 30px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.form-card h1 {
+    font-size: 24px;
+    margin-bottom: 20px;
+    color: #d6a167;
+    text-align: center;
+}
+
+.form-card .form-group {
+    margin-bottom: 15px;
+}
+
+.form-card label {
+    font-weight: bold;
+    color: #333;
+    display: block;
+    margin-bottom: 5px;
+}
+
+.form-card input[type="text"],
+.form-card input[type="number"],
+.form-card textarea,
+.form-card input[type="file"],
+.form-card select {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
+    font-size: 14px;
+}
+
+.form-card button.btn-primary,
+.form-card a.btn-secondary {
+    display: block;
+    width: 100%;
+    text-align: center;
+    padding: 10px;
+    border-radius: 5px;
+    font-weight: bold;
+    color: white;
+    margin-top: 15px;
+    text-decoration: none;
+}
+
+.form-card button.btn-primary {
+    background-color: #d6a167;
+    border: none;
+}
+
+.form-card button.btn-primary:hover {
+    background-color: #b58450;
+}
+
+.form-card a.btn-secondary {
+    background-color: #ccc;
+    color: #333;
+}
+
+.form-card a.btn-secondary:hover {
+    background-color: #bbb;
+}
+
+
+.image-preview-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px;
+    background-color: #f4f4f9;
+    border: 1px solid #ddd;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 300px; /* Ajusta el tamaño máximo según lo necesites */
+    margin: 0 auto;
+}
+
+.image-preview-container img {
+    max-width: 100%;
+    max-height: 250px;
+    object-fit: cover;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+
+.form-check-status {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 10px;
+    border: 1px solid #d6a167; /* Color de borde personalizado */
+    border-radius: 8px;
+    background-color: #f9f9f9;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    max-width: 200px; /* Ajusta según necesites */
+    margin: 0 auto;
+}
+
+.form-check-status .form-check-label {
+    font-weight: bold;
+    color: #333;
+}
+
+.form-check-status .form-check-input {
+    width: 20px;
+    height: 20px;
+    accent-color: #d6a167; /* Color personalizado del checkbox */
+    cursor: pointer;
+}

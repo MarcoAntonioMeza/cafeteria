@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="form-card mt-5">
+     <!-- Errores generales del formulario -->
+     <div class="mb-3">
+        {% if form.errors %}
+            <div class="alert alert-danger">
+                <ul>
+                    {% for field in form %}
+                        {% for error in field.errors %}
+                            <li>{{ error }}</li>
+                        {% endfor %}
+                    {% endfor %}
+                </ul>
+            </div>
+        {% endif %}
+    </div>
+<!-- Formulario en tu template -->
+<form method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+    {{ form.as_p }}
+    <button type="submit" class="btn btn-primary">Guardar</button>
+</form>
+
+</div>
+
+<script>
+    // Previsualizar la imagen seleccionada para la foto de perfil
+    document.getElementById("id_foto_perfil").addEventListener("change", function (e) {
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            document.getElementById("preview-image").src = event.target.result;
+        };
+        reader.readAsDataURL(e.target.files[0]);
+    });
+</script>
+
+{% endblock %}

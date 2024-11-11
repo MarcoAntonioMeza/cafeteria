@@ -1,0 +1,165 @@
+{% extends "base.html" %}
+{% load static %}
+{% load widget_tweaks %}
+
+{% block content %}
+<div class="form-card mt-5">
+    <h2>Crear Usuario</h2>
+    
+    <form method="POST" enctype="multipart/form-data">
+        {% csrf_token %}
+
+        <!-- Errores generales del formulario -->
+        <div class="mb-3">
+            {% if form.errors %}
+                <div class="alert alert-danger">
+                    <ul>
+                        {% for field in form %}
+                            {% for error in field.errors %}
+                                <li>{{ error }}</li>
+                            {% endfor %}
+                        {% endfor %}
+                    </ul>
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Nombre de Usuario -->
+        <div class="mb-3">
+            <label for="id_username" class="form-label">Nombre de Usuario</label>
+            {{ form.username|add_class:"form-control" }}
+            {% if form.username.errors %}
+                <div class="text-danger">
+                    {% for error in form.username.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Correo Electrónico -->
+        <div class="mb-3">
+            <label for="id_email" class="form-label">Correo Electrónico</label>
+            {{ form.email|add_class:"form-control" }}
+            {% if form.email.errors %}
+                <div class="text-danger">
+                    {% for error in form.email.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Nombre (first_name) -->
+        <div class="mb-3">
+            <label for="id_first_name" class="form-label">Nombre</label>
+            {{ form.first_name|add_class:"form-control" }}
+            {% if form.first_name.errors %}
+                <div class="text-danger">
+                    {% for error in form.first_name.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Apellido (last_name) -->
+        <div class="mb-3">
+            <label for="id_last_name" class="form-label">Apellido</label>
+            {{ form.last_name|add_class:"form-control" }}
+            {% if form.last_name.errors %}
+                <div class="text-danger">
+                    {% for error in form.last_name.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Contraseña -->
+        <div class="mb-3">
+            <label for="id_password1" class="form-label">Contraseña</label>
+            {{ form.password1|add_class:"form-control" }}
+            {% if form.password1.errors %}
+                <div class="text-danger">
+                    {% for error in form.password1.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Confirmar Contraseña -->
+        <div class="mb-3">
+            <label for="id_password2" class="form-label">Confirmar Contraseña</label>
+            {{ form.password2|add_class:"form-control" }}
+            {% if form.password2.errors %}
+                <div class="text-danger">
+                    {% for error in form.password2.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Dirección -->
+        <div class="mb-3">
+            <label for="id_direccion" class="form-label">Dirección</label>
+            {{ form.direccion|add_class:"form-control" }}
+            {% if form.direccion.errors %}
+                <div class="text-danger">
+                    {% for error in form.direccion.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Foto de Perfil -->
+        <div class="mb-3">
+            <label for="id_foto_perfil" class="form-label">Foto de Perfil</label>
+            {{ form.foto_perfil }}
+            {% if form.foto_perfil.errors %}
+                <div class="text-danger">
+                    {% for error in form.foto_perfil.errors %}
+                        <p>{{ error }}</p>
+                    {% endfor %}
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- Estado Activo (is_active) -->
+        <div class="mb-3 form-check">
+            {{ form.is_active|add_class:"form-check-input" }}
+            <label for="id_is_active" class="form-check-label">Activo</label>
+        </div>
+
+        <!-- Estado Staff (is_staff) -->
+        <div class="mb-3 form-check">
+            {{ form.is_staff|add_class:"form-check-input" }}
+            <label for="id_is_staff" class="form-check-label">Es Staff</label>
+        </div>
+
+        <!-- Superusuario (is_superuser) -->
+        <div class="mb-3 form-check">
+            {{ form.is_superuser|add_class:"form-check-input" }}
+            <label for="id_is_superuser" class="form-check-label">Superusuario</label>
+        </div>
+
+        <!-- Botón de Guardar -->
+        <button type="submit" class="btn btn-success w-100">Guardar</button>
+    </form>
+</div>
+
+<script>
+    // Previsualizar la imagen seleccionada para la foto de perfil
+    document.getElementById("id_foto_perfil").addEventListener("change", function (e) {
+        var reader = new FileReader();
+        reader.onload = function (event) {
+            document.getElementById("preview-image").src = event.target.result;
+        };
+        reader.readAsDataURL(e.target.files[0]);
+    });
+</script>
+
+{% endblock %}

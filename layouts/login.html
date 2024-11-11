@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="form-card mt-5">
+    <div class="container mt-5">
+        <h2 class="text-center">Iniciar sesión</h2>
+        <form method="POST" class="mt-4">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="username">Nombre de usuario</label>
+                <input type="text" id="username" name="username" class="form-control" placeholder="Ingresa tu nombre de usuario" required>
+            </div>
+            <div class="form-group mt-3">
+                <label for="password">Contraseña</label>
+                <input type="password" id="password" name="password" class="form-control" placeholder="Ingresa tu contraseña" required>
+            </div>
+            <button type="submit" class="btn btn-primary btn-block mt-4">Iniciar sesión</button>
+        </form>
+        <div class="text-center mt-3">
+            <p>¿No tienes una cuenta? <a href="#">Regístrate</a></p>
+        </div>
+    </div>
+</div>
+{% endblock %}

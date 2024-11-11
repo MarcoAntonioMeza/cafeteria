@@ -1,0 +1,59 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<h2 class="text-center mb-4" style="color: #b58450;">Nuestros Cafés</h2>
+
+{% if messages %}
+    <div class="alert alert-success">
+        {% for message in messages %}
+            <p>{{ message }}</p>
+        {% endfor %}
+    </div>
+{% endif %}
+
+<div class="card-container d-flex flex-wrap justify-content-start">
+
+    {% for producto in productos %}
+    <div class="product-card card" style="width: 18rem; margin: 10px; border: 1px solid #ddd; border-radius: 8px;">
+        <!-- Imagen del producto -->
+        <img src="{{ producto.imagen.url }}" class="card-img-top" alt="{{ producto.nombre }}" style="height: 200px; object-fit: cover; border-top-left-radius: 8px; border-top-right-radius: 8px;">
+
+        <div class="card-body">
+            <!-- Nombre del producto -->
+            <h5 class="card-title" style="font-size: 1.25rem; color: #333;">{{ producto.nombre }}</h5>
+            <p class="card-text" style="color: #777;">{{ producto.descripcion }}</p>
+            
+            <!-- Precio del producto -->
+            <p class="price" style="font-weight: bold; color: #b58450;">Precio: ${{ producto.precio }}</p>
+
+            <!-- Formulario de solicitud -->
+            <form method="POST" action="{% url 'tienda' %}">
+                {% csrf_token %}
+                <div class="mb-3">
+                    <label for="nombre" class="form-label">Tu Nombre</label>
+                    <input type="text" class="form-control" id="nombre" name="nombre" placeholder="Escribe tu nombre" required>
+                </div>
+            
+                <div class="mb-3">
+                    <label for="cantidad" class="form-label">Cantidad</label>
+                    <input type="number" class="form-control" id="cantidad" name="cantidad" min="1" max="10" value="1" required>
+                </div>
+            
+                <div class="mb-3">
+                    <label for="mensaje" class="form-label">Mensaje para tu vaso</label>
+                    <input type="text" class="form-control" id="mensaje" name="mensaje" placeholder="Escribe un mensaje para tu vaso...">
+                </div>
+            
+                <!-- Campo oculto para pasar el ID del producto -->
+                <input type="hidden" name="producto" value="{{ producto.id }}">
+            
+                <button type="submit" class="btn" style="background-color: #b58450; color: white; width: 100%;">Solicitar</button>
+            </form>
+            
+        </div>
+    </div>
+    {% endfor %}
+    
+</div>
+{% endblock %}

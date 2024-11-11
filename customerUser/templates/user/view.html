@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+<div class="container mt-5">
+    <h2 class="text-center mb-4">Detalles del Usuario</h2>
+
+    <div class="card shadow-sm">
+        <div class="card-body">
+            <!-- Título con Nombre de Usuario -->
+            <h4 class="card-title text-center mb-4">{{ user.first_name }} {{ user.last_name }}</h4>
+            <h5 class="card-subtitle mb-3 text-center text-muted">{{ user.username }}</h5>
+
+            <div class="row">
+                <!-- Columna de Información del Usuario -->
+                <div class="col-md-6">
+                    <p><strong>Correo Electrónico:</strong> {{ user.email }}</p>
+                    <p><strong>Dirección:</strong> {{ user.direccion }}</p>
+
+                    <!-- Estado Activo -->
+                    <p><strong>Estado Activo:</strong> {% if user.is_active %}Sí{% else %}No{% endif %}</p>
+
+                    <!-- Estado Staff -->
+                    <p><strong>Es Staff:</strong> {% if user.is_staff %}Sí{% else %}No{% endif %}</p>
+
+                    <!-- Superusuario -->
+                    <p><strong>Es Superusuario:</strong> {% if user.is_superuser %}Sí{% else %}No{% endif %}</p>
+                </div>
+
+                <!-- Columna de Foto de Perfil -->
+                <div class="col-md-6 text-center">
+                    <div class="mb-3">
+                        <label for="foto_perfil" class="form-label">Foto de Perfil:</label>
+                        <img src="{% if user.foto_perfil %}{{ user.foto_perfil.url }}{% else %}{% static 'images/default-image.jpg' %}{% endif %}" alt="Foto de Perfil" class="img-fluid rounded-circle" style="max-width: 200px; max-height: 200px; object-fit: cover;">
+                    </div>
+                </div>
+            </div>
+
+            <!-- Botón de Volver -->
+            <div class="d-flex justify-content-center mt-4">
+                <a href="{% url 'user_list' %}" class="btn btn-primary btn-lg">Volver a la lista de usuarios</a>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
